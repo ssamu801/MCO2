@@ -112,7 +112,7 @@ app.post('/saveReview', (req, res) => {
             console.log(err);
         }
         else{
-            res.redirect("/profPage");
+            res.redirect('back');
         }
     });
 }); 
