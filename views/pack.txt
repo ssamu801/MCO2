@@ -1,5 +1,0 @@
- <%= prof_profile.name %> 
- <% reviews.forEach(function(review){ %>
- <%= review.reviewContent %>
- <%= review.likes %>
-  <% }); %>
