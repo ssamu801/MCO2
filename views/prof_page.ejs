@@ -1,10 +1,10 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" media="all" href="/css/prof_page.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     
 
-    <title>Prof Page</title>
+    <title><%= prof_profile.name %></title>
 
 </head>
 
@@ -30,7 +30,7 @@
                     <ul>
                         <li class="header">Courses</li>
                         <% for (let i = 0; i < prof_profile.courses.length; i++ ){ %>
-                        <li><div class="listed-courses" onclick="openCCPROG1()"><%= prof_profile.courses[i] %></div></li>
+                        <li><a href="/profReviews/<%= prof_profile.id %>/<%= prof_profile.courses[i] %>" class="listed-courses"><%= prof_profile.courses[i] %></a></li>
                         <% }; %>
                     </ul>
                 </section>
@@ -85,7 +85,7 @@
                     <section class="popular-reviews">
                         <header class="section-heading">POPULAR REVIEWS</header>
                         <ul>
-                            <% dbreviews.forEach(function(review){ %>
+                            <% dbreviews.slice(0,5).forEach(function(review){ %>
                             <li class="review-content"> 
                                 <div class="review-container">
                                     <div class="user-icon">
@@ -95,12 +95,9 @@
                                         <span>Review by</span>
                                         <p class="username">gpwtqibbia</p>
                                     </div>
-                                    <div class="user-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+                                    <div class="course-review">
+                                        <span>course: </span>
+                                        <p><%= review.course %></p>
                                     </div>
                                     <div class="user-review">
                                         <p><%= review.reviewContent %> </p>
@@ -108,6 +105,9 @@
                                     <div class="review-likes">
                                         <span class="fa-solid fa-thumbs-up"></span>
                                         <span class="likes"> <%= review.likes %></span>
+                                    </div>
+                                    <div class="like-btn">
+                                        <span class="fa-thumbs-up fa-regular" id="like=btn"></span>
                                     </div>
                                 </div>
                             </li>  
@@ -120,7 +120,7 @@
                 <section class="recent-reviews">
                            <header class="section-heading">RECENT REVIEWS</header>
                         <ul>
-                            <% reviews.forEach(function(review){ %>
+                            <% reviews.slice(0,5).forEach(function(review){ %>
                             <li class="review-content"> 
                                 <div class="review-container">
                                     <div class="user-icon">
@@ -130,12 +130,9 @@
                                         <span>Review by</span>
                                         <p class="username">viahle</p>
                                     </div>
-                                    <div class="user-rating">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
+                                    <div class="course-review">
+                                        <span>course: </span>
+                                        <p><%= review.course %></p>
                                     </div>
                                     <div class="user-review">
                                         <p><%= review.reviewContent %> </p>
@@ -143,6 +140,9 @@
                                     <div class="review-likes">
                                         <span class="fa-solid fa-thumbs-up"></span>
                                         <span class="likes"> <%= review.likes %></span>
+                                    </div>
+                                    <div class="like-btn">
+                                        <span class="fa-thumbs-up fa-regular" id="like=btn"></span>
                                     </div>
                                 </div>
                             </li>
@@ -153,6 +153,7 @@
                 <!--------REVIEW FORM POPUP-------------->
                 <div class="review-form-popup" id="review-form-popup">
                     <h2>Write a review about this prof!</h2>
+                    <span class="fa-solid fa-x" onclick="closeReviewForm()"></span>
                     <form action="/saveReview" method="post">
                         <input type="hidden" value="<%= prof_profile.id %>" name="profID">
                         <input type="hidden" value="<%= prof_profile.name %>" name="prof_name">

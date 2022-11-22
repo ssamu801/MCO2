@@ -98,14 +98,6 @@ app.post('/saveReview', (req, res) => {
         prof_id: req.body.profID, 
         date: Date()
     });
-
-    const profID = req.body.profID; 
-    const query = profID.toString();
-
-    const text1 = "/profPage/:";
-    const path = text1.concat(profID);
-
-    console.log(query);
     
     review.save(function(err){
         if(err){
@@ -116,6 +108,38 @@ app.post('/saveReview', (req, res) => {
         }
     });
 }); 
+
+app.get("/profReviews/:profID/:course", function (req, res){
+    
+    const profID = req.params.profID;
+    const course = req.params.course;
+    var name;
+
+    Prof.find({_id: profID}, function(err, result){
+        if(err){
+            console.log(err);
+        }
+        else{           
+                name = result[0].name;      
+            
+        }
+    })
+
+    Review.find({ $and: [ {prof_id: profID}, {course: course}]}, function(err, rows){
+        if(err){
+            console.log(err);
+        }
+        else{
+
+            res.render('prof_reviews',{
+                reviews: rows,
+                name:name,
+                course: course
+            })
+        }
+        
+    });
+});
 
 app.listen(3000, function(){
     console.log("Server started on port 3000")
