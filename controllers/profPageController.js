@@ -1,7 +1,7 @@
-const Prof = require("../models/profSchema");
-const Review = require("../models/reviewSchema");
+import Prof from "../models/profSchema.js";
+import Review from "../models/reviewSchema.js";
 
-module.exports = {
+const profPage = {
     load: function(req, res){
         const profID = req.params.profID;
         var dbreviews = [];
@@ -79,7 +79,8 @@ module.exports = {
             }
         });
     }
-    
+
+
 }
 
-export default profPageController;
+export default profPage;

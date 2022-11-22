@@ -1,6 +1,6 @@
-const Prof = require("../models/profSchema");
+import Prof from "../models/profSchema.js";
 
-module.exports = {
+const profList = {
     profList: function(req, res){
         Prof.find({},function(err, result){
             if(err){
@@ -13,4 +13,5 @@ module.exports = {
     }
 }
 
-export default profListController;
+
+export default profList;

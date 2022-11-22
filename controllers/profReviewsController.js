@@ -1,7 +1,7 @@
-import Prof from "../models/profSchema";
-import Review from "../models/reviewSchema";
+import Prof from "../models/profSchema.js";
+import Review from "../models/reviewSchema.js";
 
-module.exports = {
+const profReviews = {
     load: function(req, res){
         const profID = req.params.profID;
     const course = req.params.course;
@@ -49,4 +49,4 @@ module.exports = {
     }
 }
 
-export default profReviewsController;
+export default profReviews;
