@@ -1,5 +1,5 @@
-const Prof = require("../models/profSchema");
-const Review = require("../models/reviewSchema");
+import Prof from "../models/profSchema";
+import Review from "../models/reviewSchema";
 
 module.exports = {
     load: function(req, res){
