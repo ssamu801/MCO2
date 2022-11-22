@@ -68,6 +68,42 @@ html, body {
     color: white;
 }
 
+/*drop down*/
+.dropdown select,
+.dropdown button {
+  border-radius: 0 0 0 0;
+  width: 11.5%;
+  display: inline;
+  margin-top: 2%;
+}
+
+#div-filter {
+  width: 10%;
+  display: inline;
+
+}
+
+.searchbar {
+  flex: auto;
+  margin: auto;
+  display: inline;
+  align-items: center;
+}
+
+.form-control {
+  width: 15%;
+  height: 34px;
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
 .container{
     margin-top: 50px;
     margin-bottom: 50px;
