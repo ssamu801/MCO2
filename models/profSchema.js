@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const profProfileSchema = {
     name: String,
@@ -13,4 +13,4 @@ const profProfileSchema = {
 
 const Prof = mongoose.model("prof_profile", profProfileSchema);
 
-module.exports = Prof;
+export default Prof;

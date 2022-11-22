@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const reviewsSchema = {
     //username: String,
@@ -14,4 +14,4 @@ const reviewsSchema = {
 
 const Review = mongoose.model("Review", reviewsSchema);
 
-module.exports = Review;
+export default Review;
