@@ -17,7 +17,7 @@ module.exports = {
         }
     })
 
-    Review.find({ $and: [ {prof_id: profID}, {course: course}]}, function(err, rows){
+    Review.find({ $and: [ {prof_id: profID}, {course: course}]}, null, {sort: {_id: -1}}, function(err, rows){
         if(err){
             console.log(err);
         }
