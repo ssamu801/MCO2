@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+:root {
+    --ourwhite: #feffff;
+    --accent: #def2f1;
+    --semiDarkBlue: #3AAFA9;
+    --darkBlue: #2b7a78;
+    --dark: #17252a;
+}
+
+html,body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--accent);
+    height: 100%;
+}
+
+#navbar{
+    background-color: var(--ourwhite);
+    flex: auto;
+    left: 0px;
+    top: 0px;
+    font-weight: 600;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin: auto;
+   padding: 5px;
+   
+}
+#navbar button:hover{
+    background-color: var(--ourwhite);
+    cursor: pointer;
+}
+
+#navbar img{
+    height: 67px;
+    width: 67px;
+    padding-top: 2px;
+    padding-left: 10px;
+    border-radius: 50%;
+}
+
+#navbar input[type=text]{
+    
+    font-size: 15px;
+    width: 30%;
+    height: 30%;
+    margin:auto;
+    margin-left: 15%;
+    margin-right: 0px; 
+}
+
+#navbar p{
+    bottom: 10px;
+}
+
+#search{
+    background-color: rgb(58, 175, 169);
+    margin-right: 5%;
+    height: 25px;
+    font-family: 'Inter',sans-serif;
+}
+
+#navbar a.navbutton {
+    color: black;
+    padding: 30px 5px;
+   text-decoration: none;
+    font-size: 25px;
+    margin-right: 0%;
+    margin: auto;
+    
+    color: rgba(0, 0, 0, 0.5);
+    
+}
+#navbar a.navbutton:hover {
+    background-color: var(--semiDarkBlue);
+    color: white;
+}
+
+#logo{
+    width: 126px;
+    height: 110px;
+}
+
+#menucontainer{
+    background-color: rgb(222, 242, 241);
+    padding: 50px;
+    text-align: center;
+}
+
+.postcontain{
+    background-color: var(--ourwhite);
+    border: 1px solid var(--darkBlue);
+    width: 60%;
+    padding-left: 20px;
+    display: flex;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin:auto;
+    padding: auto;
+}
+
+.post-head{
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+
+}
+
+.post-content{
+    margin-left: 20%;
+    font-weight: lighter;
+    font-family: 'Inter', sans-serif;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    
+    
+}
+.post-content p{
+    font-size: larger;
+    padding-top: 40px;
+    margin: auto;
+    padding-left:0px ;
+    
+}
+
+.postcontain:link{
+    color: var(--dark);
+    text-decoration: none;
+  }
+  
+.postcontain:visited{
+    color: var(--dark);
+    text-decoration: none;
+}
+
+.postcontain:hover{
+    background-color: var(--darkBlue);
+    color: var(--ourwhite);
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+.postcontain:active{
+    color: var(--dark);
+    text-decoration: none;
+}
