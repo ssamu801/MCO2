@@ -3,6 +3,8 @@ import College from "../models/collegesSchema.js";
 
 const profList = {
     profList: function(req, res){
+        const collegeCode = req.params.college;
+
         Prof.find({},function(err, result){
             if(err){
                 console.log(err);
