@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,65 +21,16 @@
 <!------------------content container--------------------->
     <div id="menucontainer">
         <!------------------post container--------------------->
-        <div class="postcontain" onclick="toCCSProfs()">
+        <% colleges.forEach(function(college){ %>  
+        <a href="profList/<%= college.college %>" class="postcontain" onclick="toCCSProfs()">
 
             <div class="post-head">
-                <p>College Of Computer Studies</p>
+                <p><%= college.name %></p>
             </div>
-        </div>
-        <!------------------post container--------------------->
-        <div class="postcontain" onclick="toCLAProfs()">
-
-            <div class="post-head">
-                <p>College Of Liberal Arts</p>
-            </div>
-        </div>
-        <!------------------post container--------------------->
-        <div class="postcontain" onclick="toCOEProfs()">
-
-            <div class="post-head">
-                <p>College of Engineering</p>
-            </div>
-            
-        </div>
-
-        <!------------------post container--------------------->
-        <div class="postcontain" onclick="toCOBProfs()">
-
-            <div class="post-head">
-                <p>College Of Business</p>
-            </div>   
-        </div>
-
-        <!------------------post container--------------------->
-        <div class="postcontain" onclick="toCEDProfs()">
-
-            <div class="post-head">
-                <p>College Of Education</p>
-            </div>
- 
-
+        </a>
+        <% }); %>
+        
     </div>
-
-        <!------------------post container--------------------->
-        <div class="postcontain" onclick="toCOSProfs()">
-        
-            <div class="post-head">
-                <p>College Of Science</p>
-            </div>
-        
-        
-        </div>
-
-        <!------------------post container--------------------->
-        <div class="postcontain" onclick="toSOEProfs()">
-        
-            <div class="post-head">
-                <p>School of Economics</p>
-            </div>
-
-        
-        </div>
     <script src="javascript/home.js"></script>    
 </body>
 
