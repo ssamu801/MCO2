@@ -1,4 +1,5 @@
 import Prof from "../models/profSchema.js";
+import College from "../models/collegesSchema.js";
 
 const profList = {
     profList: function(req, res){
