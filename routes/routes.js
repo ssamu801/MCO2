@@ -4,11 +4,15 @@ import controller from "../controllers/controller.js";
 import profList from "../controllers/profListController.js";
 import profPage from "../controllers/profPageController.js";
 import profReview from "../controllers/profReviewsController.js";
+import home from "../controllers/homeController.js";
 
 const router = Router();
 
 //from controller.js
-router.get('/', controller.getIndex);
+router.get('/register', controller.getIndex);
+
+//from homeController.js
+router.get('/', home.collegeList);
 
 //from profListController.js
 router.get('/profList', profList.profList);
