@@ -5,11 +5,20 @@ import profList from "../controllers/profListController.js";
 import profPage from "../controllers/profPageController.js";
 import profReview from "../controllers/profReviewsController.js";
 import home from "../controllers/homeController.js";
+import registerCont from "../controllers/registerController.js";
+import loginCont from "../controllers/loginController.js";
+
 
 const router = Router();
 
 //from controller.js
 router.get('/register', controller.getIndex);
+
+//from registerController.js
+router.get('/register', registerCont.getRegister);
+
+//from loginController.js
+router.get('/login', loginCont.getLogin);
 
 //from homeController.js
 router.get('/', home.collegeList);
