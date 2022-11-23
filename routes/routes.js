@@ -15,7 +15,7 @@ router.get('/register', controller.getIndex);
 router.get('/', home.collegeList);
 
 //from profListController.js
-router.get('/profList', profList.profList);
+router.get('/profList/:collegeCode', profList.profList);
 
 //from profPageController.js
 router.get('/profPage/:profID', profPage.load);
