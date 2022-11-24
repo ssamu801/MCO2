@@ -29,14 +29,16 @@
             <a class="navbutton" href="home.html">SEARCH</a>
         </div>
         
-        <div class="container">
-            <div class="profcontainer">
+    <div class="container">
+        <% prof_profile.forEach(function(prof){ %>
+            <a href="profPage/<%= prof.id %>" class="profcontainer">
                 <img src="images/icon.png">
-                <div class="prof-name" id="profBS11" onclick="toProfPage4()">
-                    <p>Jane Doe</p>
+                <div class="prof-name" id="profBS11">
+                    <p><%= prof.name %></p>
                 </div>
-            </div>
-        </div>
+            </a>
+            <% }); %>
+    </div>
         
         <script src="javascript/prof_list.js"></script>
 </body>
