@@ -3,12 +3,12 @@ import user from "../models/userSchema.js";
 import bcrypt from "bcrypt";
 
 function passportMiddle(passport) {
-    passport.use( new LocalStrategy({ usernameField: "userEmail"},
-    function (userEmail, password, done) {
+    passport.use( "local", new LocalStrategy({ usernameField: "email"},
+    function (email, password, done) {
 
-        user.findOne({userEmail: userEmail}).then(function(user) {
+        user.findOne({email: email}).then(function(user) {
             if(!user){
-                return done(null, false, {message: "user email is not found."});
+                return done(null, false, {message: "email is not found."});
             }
             
                 bcrypt.compare(password, user.password, function(error, match){
