@@ -30,10 +30,10 @@ router.get('/login', loginCont.getLogin);
 router.post('/login', loginCont.userAuthenticate);
 
 //from homeController.js
-//router.get('/home', authenticateUser.ensureAuthentication, home.collegeList);
-router.get('/home', function(req, res){
-    res.render('home');
-})
+router.get('/home', authenticateUser.ensureAuthentication, home.collegeList);
+// router.get('/home', function(req, res){
+//     res.render('home');
+// })
 
 //from profListController.js
 router.get('/profList/:collegeCode', profList.profList);

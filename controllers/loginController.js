@@ -14,7 +14,7 @@ const loginController = {
             // console.log(user);
             // console.log(info);
             successRedirect: "/home",
-            failureRedirect: "/settings",
+            failureRedirect: "/login",
             failureFlash: true
         })(req, res, next);
     }
