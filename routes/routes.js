@@ -48,9 +48,14 @@ router.get('/profReviews/:profID/:course', profReview.load);
 router.post('/updateLikes', profReview.updateLikes);
 
 router.get('/logout', function(req, res){
-    req.logout();
-    req.flash("success_msg", "Successfully logged out");
-    res.redirect('/login')
+    req.logout( function(error){
+        if(error){
+            return next(error);
+        }
+        req.flash("success_msg", "Successfully logged out");
+        res.redirect('/login')
+    });
+    
 })
 
 //Settings
