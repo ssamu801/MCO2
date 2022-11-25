@@ -68,6 +68,42 @@ html, body {
     color: white;
 }
 
+.navbar input[type=text] {
+    font-size: 15px;
+    width: 600px;
+    height: 25px;
+    margin-left: 300px;
+    margin-top: 30px;
+}
+
+.navbar p{
+    bottom: 10px;
+}
+
+#search{
+    background-color: rgb(58, 175, 169);
+    margin-right: 5%;
+    height: 25px;
+    font-family: 'Inter',sans-serif;
+}
+
+#navbar a.navbutton {
+    color: black;
+    padding: 30px 5px;
+   text-decoration: none;
+    font-size: 25px;
+    margin-right: 0%;
+    margin: auto;
+    
+    color: rgba(0, 0, 0, 0.5);
+    
+}
+#navbar a.navbutton:hover {
+    background-color: var(--semiDarkBlue);
+    color: white;
+}
+
+
 /* WEBPAGE CONTENT */
 .container{
     padding-bottom: 25px;
@@ -138,21 +174,16 @@ html, body {
     cursor: pointer;
 }
 
-.courses .listed-courses:hover{
-    background-color: var(--darkBlue);
-    color: white;
-}
-
-.courses a:link{
-    color: black;
+.courses .listed-courses:link{
+    color: var(--dark);
     text-decoration: none;
 }
 
-.courses a:visited{
-    color: blue;
+.courses .listed-courses:visited{
+    color: var(--dark);
 }
 
-.courses a:hover{
+.courses .listed-courses:hover{
     color: gray;
     text-decoration: underline;
 }
@@ -205,24 +236,59 @@ html, body {
 
 }
 
+.rate-label{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
 /* ADD RATING */
 .star-container {
     position: relative;
-    height: 100px;
+    height: 80px;
+    width: 338px;
+    left:35px;
  }
 
 .star-container a {
     position: relative;
-    top: -10px;
-    left:25px;
+    top: 15px;
     text-decoration: none;
     width: 50px;
     height: 50px;
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 14px;
     margin-bottom: 0px;
     z-index: 2;
+    opacity: 50%;
 }
+
+.rating__star {
+    position: relative;
+    font-size: 60px;
+    cursor: pointer;
+    color: var(--semiDarkBlue);
+    transition: filter linear .3s;
+ }
+
+.star-container.disabled{
+    pointer-events: none;
+}
+ 
+.star-container:hover a{
+    opacity: 100%;
+ }
+
+.star-container a:hover{
+    opacity: 100%;
+ }
+
+.star-container a:hover ~ a{
+    opacity: 50%;
+ } 
+
+.star-container a.active{
+    opacity: 100%;
+ }  
 
 .stars {
     margin: 0;
@@ -236,27 +302,6 @@ html, body {
    z-index: 1;
 
 }
-  
-.star1:hover ~ .stars {
-    background-position: 0 -81px;
-}
-  
-.star2:hover ~ .stars {
-    background-position: 0 -162px;
-}
-  
-.star3:hover ~ .stars {
-    background-position: 0 -243px;
-}
-  
-.star4:hover ~ .stars {
-    background-position: 0 -324px;
-}
-  
-.star5:hover ~ .stars {
-    background-position: 0 -405px;
-}
-  
 
 /* ADD REVIEW */
 .review-box p {
@@ -409,19 +454,19 @@ html, body {
     font-weight: bold;
 }
 
-.user-rating{
+.course-review{
     
     grid-row-start: 1;
     grid-row-start: 2;
     grid-column-start: 2;
     grid-column-end: 3;
 
-
 }
 
-.checked {
-    color: green;
-  }
+.course-review p{   
+    display: inline;
+    font-weight: bold;
+}
 
 .user-review{
     
@@ -451,8 +496,29 @@ html, body {
 }
 
 .fa-thumbs-up{
-    color:crimson;
+    font-size: 20px;
+}
+
+.fa-solid{
+    color:var(--semiDarkBlue);
     
+}
+
+.fa-regular{
+    color:var(--semiDarkBlue);
+    cursor: pointer;
+}
+
+.likes-form{
+    margin: 0px;
+}
+
+.like-btn{
+    
+    grid-row-start: 3;
+    grid-row-start: 4;
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 
 .recent-reviews{
@@ -496,6 +562,12 @@ html, body {
     visibility: visible;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
+}
+
+.fa-x{
+    float: right;
+    margin-right: -20px;
+    margin-top: -50px;
 }
 
 textarea[id=text-review] {
