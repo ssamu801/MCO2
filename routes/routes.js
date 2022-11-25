@@ -4,6 +4,7 @@ import { Router } from "express";
 import authenticateUser from "../configs/authenticateUser.js";
 
 import controller from "../controllers/controller.js";
+import deptList from "../controllers/departmentsController.js";
 import profList from "../controllers/profListController.js";
 import profPage from "../controllers/profPageController.js";
 import profReview from "../controllers/profReviewsController.js";
@@ -21,6 +22,9 @@ const router = Router();
 //from controller.js
 router.get('/', controller.getIndex);
 
+//from departmentsController.js
+router.get('/profList/:collegeCode', deptList.deptList);
+
 //from registerController.js
 router.get('/register', registerCont.getRegister);
 router.post('/register', registerCont.newUser);
@@ -34,7 +38,7 @@ router.post('/login', loginCont.userAuthenticate);
 router.get('/home', authenticateUser.ensureAuthentication, home.collegeList);
 
 //from profListController.js
-router.get('/profList/:collegeCode', authenticateUser.ensureAuthentication, profList.profList);
+router.get('/profList/:collegeCode/:department', authenticateUser.ensureAuthentication, profList.profList);
 
 //from profPageController.js
 router.get('/profPage/:profID', authenticateUser.ensureAuthentication, profPage.load);

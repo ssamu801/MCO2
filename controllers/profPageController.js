@@ -1,5 +1,6 @@
 import Prof from "../models/profSchema.js";
 import Review from "../models/reviewSchema.js";
+import authenticateUser from "../configs/authenticateUser.js";
 
 const profPage = {
     load: function(req, res){
