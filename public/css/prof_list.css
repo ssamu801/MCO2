@@ -114,25 +114,6 @@ html, body {
     grid-template-columns: 1fr 1fr;
     column-gap: 200px;
 }
-.profcontainer {
-  background-color: white;
-  width: 500px;
-  height: 200px;
-  border-radius: 20px;
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  column-gap: 10px;
-  cursor: pointer;
-}
-
-.profcontainer img {
-  width: 100px;
-  position: relative;
-  margin-top: 40px;
-  margin-left: 20px;
-  margin-right: 0;
-
-}
 
 .profCT-container{
     background-color: white;
@@ -191,6 +172,10 @@ html, body {
 .search-container {
     float: right;
   }
+
+.search-container input{
+    background-color: white;
+}
   
  input[type=text] {
     padding: 6px;
