@@ -34,15 +34,15 @@ router.post('/login', loginCont.userAuthenticate);
 router.get('/home', authenticateUser.ensureAuthentication, home.collegeList);
 
 //from profListController.js
-router.get('/profList/:collegeCode', profList.profList);
+router.get('/profList/:collegeCode', authenticateUser.ensureAuthentication, profList.profList);
 
 //from profPageController.js
-router.get('/profPage/:profID', profPage.load);
+router.get('/profPage/:profID', authenticateUser.ensureAuthentication, profPage.load);
 router.post('/updateLikes', profPage.updateLikes);
 router.post('/saveReview', profPage.saveReview);
 
 //from profReviewsController
-router.get('/profReviews/:profID/:course', profReview.load);
+router.get('/profReviews/:profID/:course', authenticateUser.ensureAuthentication, profReview.load);
 router.post('/updateLikes', profReview.updateLikes);
 
 router.get('/logout', function(req, res){
