@@ -13,7 +13,6 @@ import home from "../controllers/homeController.js";
 import registerCont from "../controllers/registerController.js";
 import loginCont from "../controllers/loginController.js";
 
-import College from "../models/collegesSchema.js";
 import settingsCont from "../controllers/settingController.js";
 
 
@@ -39,6 +38,7 @@ router.get('/home', authenticateUser.ensureAuthentication, home.collegeList);
 
 //from profListController.js
 router.get('/profList/:collegeCode/:department', authenticateUser.ensureAuthentication, profList.profList);
+router.get('/profResults/:department', authenticateUser.ensureAuthentication, profList.searchFilter);
 
 //from profPageController.js
 router.get('/profPage/:profID', authenticateUser.ensureAuthentication, profPage.load);

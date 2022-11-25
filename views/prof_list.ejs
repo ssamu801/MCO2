@@ -18,7 +18,7 @@
     </div>
 
     <div class="search-container">
-        <form action="/action_page.php">
+        <form action="/profResults/:prof.department" method="get">
           <input type="text" placeholder="Search from this department" name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
@@ -30,12 +30,10 @@
             <div class="prof-name" id="profBS11">
                 <p><%= prof.name %></p>
             </div>
-        
         </a>
         <% }); %>
     </div>
-    
-    <script src="/javascript/prof_list.js"></script>
+
 </body>
 
 </html>    
