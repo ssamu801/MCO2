@@ -8,11 +8,7 @@ const loginController = {
 
     userAuthenticate: function(req, res, next){
         console.log("passport authenticating")
-        passport.authenticate("local", /*function(err, user, info)*/ {
-            // console.log("in authentication");
-            // console.log(err);
-            // console.log(user);
-            // console.log(info);
+        passport.authenticate("local", {
             successRedirect: "/home",
             failureRedirect: "/login",
             failureFlash: true

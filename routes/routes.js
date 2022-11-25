@@ -13,6 +13,7 @@ import registerCont from "../controllers/registerController.js";
 import loginCont from "../controllers/loginController.js";
 
 import College from "../models/collegesSchema.js";
+import settingsCont from "../controllers/settingController.js";
 
 
 const router = Router();
@@ -31,9 +32,6 @@ router.post('/login', loginCont.userAuthenticate);
 
 //from homeController.js
 router.get('/home', authenticateUser.ensureAuthentication, home.collegeList);
-// router.get('/home', function(req, res){
-//     res.render('home');
-// })
 
 //from profListController.js
 router.get('/profList/:collegeCode', profList.profList);
@@ -59,8 +57,6 @@ router.get('/logout', function(req, res){
 })
 
 //Settings
-router.get('/settings', function(req, res){
-    res.render('settings')
-})
+router.get('/settings', settingsCont.getSettings);
 
 export default router;
