@@ -172,3 +172,7 @@ span.need-acc {
     margin-bottom: 25px;
 
 }
+
+#reg-button:hover {
+    cursor: pointer;
+}
