@@ -6,6 +6,10 @@ const profPage = {
     load: function(req, res){
         const profID = req.params.profID;
         var dbreviews = [];
+        var isRated = 1;
+
+        console.log(req.user.id);
+        console.log(req.user.username);
 
         Review.find({prof_id: profID}, null, {sort: {likes: -1}}, function(err, rows){
             if(err){
@@ -25,6 +29,7 @@ const profPage = {
         
         });
 
+
         Prof.find({_id: profID}, function(err, result){
             if(err){
                 console.log(err);
@@ -35,11 +40,28 @@ const profPage = {
                         console.log(err);
                     }
                     else{
-                        res.render('prof_page',{
-                            dbreviews: dbreviews,
-                            reviews: rows,
-                            prof_profile: result[0],
+                        Prof.find({_id: profID}, {'rated_userID': {$elemMatch: {userID:req.user.id}}}, function(err, rating){
+                            if(err){
+                                console.log(err);
+                            }
+                            else{
+                                if(rating[0].rated_userID.length == 0){
+                                    isRated = 0;
+                                    console.log("walla 2log");
+                                }
+                                res.render('prof_page',{
+                                    user: req.user,
+                                    dbreviews: dbreviews,
+                                    reviews: rows,
+                                    prof_profile: result[0],
+                                    user_rating: rating[0].rated_userID[0],
+                                    isRated: isRated
+                                })
+                                
+                            }  
+                            
                         })
+                
                     }   
                 
                 })
@@ -52,6 +74,21 @@ const profPage = {
         const query = {_id: reviewID};
     
         Review.findOneAndUpdate(query, {$inc : { likes: 1 }}, function(err, rows){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.redirect('back');
+            }
+            
+        });
+    },
+    
+    deletePost: function(req, res){
+        const reviewID = req.body.reviewID;
+        const query = {_id: reviewID};
+    
+        Review.deleteOne(query, function(err, rows){
             if(err){
                 console.log(err);
             }
@@ -80,6 +117,106 @@ const profPage = {
                 res.redirect('back');
             }
         });
+    },
+
+    oneStar: function(req, res){
+        const profID = req.params.profID;
+        const query = {_id: profID};
+        const userID = req.user.id;
+        const userRating = { userID: userID, rating: 1 };
+
+        console.log(profID);
+
+       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
+        Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.redirect('back');
+            }
+        })
+        
+    },
+
+    twoStar: function(req, res){
+        const profID = req.params.profID;
+        const query = {_id: profID};
+        const userID = req.user.id;
+        const userRating = { userID: userID, rating: 2 };
+
+        console.log(profID);
+
+       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
+        Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.redirect('back');
+            }
+        })
+        
+    },
+
+    threeStar: function(req, res){
+        const profID = req.params.profID;
+        const query = {_id: profID};
+        const userID = req.user.id;
+        const userRating = { userID: userID, rating: 3 };
+
+        console.log(profID);
+
+       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
+        Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.redirect('back');
+            }
+        })
+        
+    },
+
+    fourStar: function(req, res){
+        const profID = req.params.profID;
+        const query = {_id: profID};
+        const userID = req.user.id;
+        const userRating = { userID: userID, rating: 4 };
+
+        console.log(profID);
+
+       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
+        Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.redirect('back');
+            }
+        })
+        
+    },
+
+    fiveStar: function(req, res){
+        const profID = req.params.profID;
+        const query = {_id: profID};
+        const userID = req.user.id;
+        const userRating = { userID: userID, rating: 5 };
+
+        console.log(profID);
+
+       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
+        Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.redirect('back');
+            }
+        })
+        
     }
 
 
