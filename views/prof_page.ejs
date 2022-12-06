@@ -55,13 +55,25 @@
                 <div class="review-box">
                     <!-----------ADD STAR RATING------------->
                     <p class="rate-label">Rate</p>
+                    <% if(isRated == 0){ %>
                     <div class="star-container">
-                        <a class="rating__star fas fa-star"></a>
-                        <a class="rating__star fas fa-star"></a>
-                        <a class="rating__star fas fa-star"></a>
-                        <a class="rating__star fas fa-star"></a>
-                        <a class="rating__star fas fa-star"></a>
+                        <a href="/<%= prof_profile.id %>/<%= user.id %>/1" class="rating__star fas fa-star"></a>
+                        <a href="/<%= prof_profile.id %>/<%= user.id %>/2" class="rating__star fas fa-star"></a>
+                        <a href="/<%= prof_profile.id %>/<%= user.id %>/3" class="rating__star fas fa-star"></a>
+                        <a href="/<%= prof_profile.id %>/<%= user.id %>/4" class="rating__star fas fa-star"></a>
+                        <a href="/<%= prof_profile.id %>/<%= user.id %>/5" class="rating__star fas fa-star"></a>
                     </div>
+                    <% }; %> 
+                    <% if(isRated == 1){ %>
+                        <div class="star-container disabled">
+                        <% for (let i = 0; i < user_rating.rating; i++ ){ %>
+                                <a class="rating__star fas fa-star active"></a>
+                        <% }; %>
+                        <% for (let i = user_rating.rating; i < 5; i++ ){ %>
+                            <a class="rating__star fas fa-star"></a>
+                        <% }; %>  
+                    </div>  
+                    <% }; %> 
                     <hr>
                     <!----------ADD REVIEW---------------------------->
                     <div class="add-review-container">
@@ -72,8 +84,7 @@
                 <div class="ratings-container">
                     <hr>
                     <div class="ratings-content">
-                        <p>Average Rating: 4/5 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                            &nbsp; &nbsp; &nbsp; &nbsp;109 users</p>
+                        <p>Average Rating: 4/5 <span class="user-count"><%= prof_profile.rated_userID.length%> users</span></p>
                     </div>
                     <div class="average-stars">
                     </div>
@@ -92,6 +103,12 @@
                                     <div class="name">
                                         <span>Review by</span>
                                         <p class="username">gpwtqibbia</p>
+                                    </div>
+                                    <div class="del-btn">
+                                        <form class="del-form" action="/deletePost" method="post">
+                                            <input type="hidden" value="<%= review.id %>" name="reviewID">
+                                            <button type="submit" class="fa-solid fa-trash" id="del-btn"></button>
+                                        </form>
                                     </div>
                                     <div class="course-review">
                                         <span>course: </span>
@@ -131,6 +148,12 @@
                                         <span>Review by</span>
                                         <p class="username">viahle</p>
                                     </div>
+                                    <div class="del-btn">
+                                        <form class="del-form" action="/deletePost" method="post">
+                                            <input type="hidden" value="<%= review.id %>" name="reviewID">
+                                            <button type="submit" class="fa-solid fa-trash" id="del-btn"></button>
+                                        </form>
+                                    </div>
                                     <div class="course-review">
                                         <span>course: </span>
                                         <p><%= review.course %></p>
@@ -167,167 +190,7 @@
                         <button type="submit" onclick="closeReviewForm()">Submit review</button>
                     </form>
                 </div>
-                <!----------REVIEWS PER COURSE------------------------------>
-                <div class="listed-courses-reviews" id="listed-course1">
-                    <ul>
-                        <h2>CCPROG1</h2>
-                        <li>
-                            <div class="review-container">
-                                <div class="user-icon">
-                                    <img src="/images/icon.png">
-                                </div>
-                                <div class="name">
-                                    <span>Review by</span>
-                                    <p class="username">httpmj</p>
-                                </div>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <div class="user-review">
-                                    <p>He teaches well in a way na matututo ka talaga kahit na zero experience ka when it comes to programming.</p>
-                                </div>
-                            </div>
-                    </li>
-                        <li>
-                            <div class="review-container">
-                                <div class="user-icon">
-                                    <img src="/images/icon.png">
-                                </div>
-                                <div class="name">
-                                    <span>Review by</span>
-                                    <p class="username">viahle</p>
-                                </div>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <div class="user-review">
-                                    <p>Very nice prof!</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <button type="button" onclick="closeCCPROG1()">Close</button>
-                </div>
 
-                <div class="listed-courses-reviews" id="listed-course2">
-                    <h2>CCPROG2</h2>
-                    <ul>
-                        <li>
-                            <div class="review-container">
-                                <div class="user-icon">
-                                    <img src="/images/icon.png">
-                                </div>
-                                <div class="name">
-                                    <span>Review by</span>
-                                    <p class="username">shmowzow</p>
-                                </div>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <div class="user-review">
-                                    <p> Activities are not hard but also not easy, pero sure thing na feasible mga pinapagawa nya. Considerate din sa 
-                                        deadlines and naka ilang extensions sya sa activities and MPs namin. Di rin sya tamad magturo and mag explain 
-                                        so be open lang magtanong sakanya sure thing na mag eexplain sya. Points out inefficiencies din sa activities 
-                                        and MPs pero for the purpose lang na mapoint na pwede gawing better, he doesn't give any minus points as long 
-                                        as your code works and is not prone to error. Overall a very good and fair prof.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="review-container">
-                                <div class="user-icon">
-                                    <img src="/images/icon.png">
-                                </div>
-                                <div class="name">
-                                    <span>Review by</span>
-                                    <p class="username">html1234</p>
-                                </div>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <div class="user-review">
-                                    <p> He teaches in a way na talagang maiintindihan mo regardless if you don't have experience in programming. 
-                                        He will give you a grade that you deserve (he doesn't curve grades or give additional works para fair sa lahat) 
-                                        and gives activities for you to practice. Had him for f2f im not sure lang sa online setup.</p>
-                                </div>
-                                
-                            </div>
-                        </li>
-                    </ul>
-                    <button type="button" onclick="closeCCPROG2()">Close</button>
-                </div>
-
-                <div class="listed-courses-reviews" id="listed-course3">
-                    <h2>CCPROG3</h2>
-                    <div class="review-container">
-                        <div class="user-icon">
-                            <img src="/images/icon.png">
-                        </div>
-                        <div class="name">
-                            <span>Review by</span>
-                            <p class="username">gpwtqibbia</p>
-                        </div>
-                        <div class="user-rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                        </div>
-                        <div class="user-review">
-                            <p> Teaches well and lenient with his students. He always asks if na gets niyo ang topic (so dont be afraid to ask questions). 
-                                He’s super nice as well like if di ka makapasa ng assignment, he usually does extensions. Just do everything and you’ll pass for sure.</p>
-                        </div>
-                    </div>
-                    <button type="button" onclick="closeCCPROG3()">Close</button>
-                </div>
-
-                <div class="listed-courses-reviews" id="listed-course4">
-                    <h2>CCAPDEV</h2>
-                    <ul>
-                        <li>
-                            <div class="review-container">
-                                <div class="user-icon">
-                                    <img src="/images/icon.png">
-                                </div>
-                                <div class="name">
-                                    <span>Review by</span>
-                                    <p class="username">ISvdra</p>
-                                </div>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <div class="user-review">
-                                    <p> Really lenient when it comes to deadlines kasi due lahat ng requirements at the end of the term.
-                                        May recitation siya during class thats part of your grade. Teaching style is ok. 
-                                        He explains the concepts very well with examples.
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <button type="button" onclick="closeCCAPDEV()">Close</button>
-                </div>
                 </div>
             </div>
         </div>
