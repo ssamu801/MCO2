@@ -38,12 +38,18 @@ router.get('/home', authenticateUser.ensureAuthentication, home.collegeList);
 
 //from profListController.js
 router.get('/profList/:collegeCode/:department', authenticateUser.ensureAuthentication, profList.profList);
-router.get('/profResults/:department', authenticateUser.ensureAuthentication, profList.searchFilter);
+router.post('/profResults/:department', authenticateUser.ensureAuthentication, profList.searchFilter);
 
 //from profPageController.js
 router.get('/profPage/:profID', authenticateUser.ensureAuthentication, profPage.load);
 router.post('/updateLikes', profPage.updateLikes);
 router.post('/saveReview', profPage.saveReview);
+router.post('/deletePost', profPage.deletePost);
+router.get('/:profID/:userID/1', profPage.oneStar);
+router.get('/:profID/:userID/2', profPage.twoStar);
+router.get('/:profID/:userID/3', profPage.threeStar);
+router.get('/:profID/:userID/4', profPage.fourStar);
+router.get('/:profID/:userID/5', profPage.fiveStar);
 
 //from profReviewsController
 router.get('/profReviews/:profID/:course', authenticateUser.ensureAuthentication, profReview.load);
