@@ -8,9 +8,6 @@ const profPage = {
         var dbreviews = [];
         var isRated = 1;
 
-        console.log(req.user.id);
-        console.log(req.user.username);
-
         Review.find({prof_id: profID}, null, {sort: {likes: -1}}, function(err, rows){
             if(err){
                 console.log(err);
