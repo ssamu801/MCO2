@@ -6,9 +6,13 @@ const profProfileSchema = {
     college: String,
     department: String,
     averageRating: 0,
-    usersRated: 0,
-    courses_name: [String]
-    //rated_userID
+    courses_name: [String],
+    rated_userID:[
+        {
+            userID: "",
+            rating: 0
+        }
+    ]
 };
 
 const Prof = mongoose.model("prof_profile", profProfileSchema);
