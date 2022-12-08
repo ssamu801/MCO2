@@ -83,17 +83,43 @@
                 <!--------------------AVERAGE STAR RATING--------------->
                 <div class="ratings-container">
                     <hr>
+                    <% if(prof_profile.rated_userID.length == 0){ %>
+                        <div class="ratings-content">
+                            <p class="average">Average Rating: 0/5 <span class="user-count"><%= prof_profile.rated_userID.length%> users</span></p>
+                        </div>
+                        <div class="average-stars">
+                            <span class="fade rating__star fas fa-star"></span>
+                            <span class="fade rating__star fas fa-star"></span>
+                            <span class="fade rating__star fas fa-star"></span>
+                            <span class="fade rating__star fas fa-star"></span>
+                            <span class="fade rating__star fas fa-star"></span>
+                        </div>
+                        <% }; %> 
+                    <% if(prof_profile.rated_userID.length != 0){ %>
                     <div class="ratings-content">
-                        <p>Average Rating: 4/5 <span class="user-count"><%= prof_profile.rated_userID.length%> users</span></p>
+                        <p class="average">Average Rating: <%= sum.sum_val / prof_profile.rated_userID.length %>/5 <span class="user-count"><%= prof_profile.rated_userID.length%> users</span></p>
                     </div>
                     <div class="average-stars">
+                        <% for (let i = 0; i < Math.floor(sum.sum_val / prof_profile.rated_userID.length); i++ ){ %>
+                            <span class="rating__star fas fa-star"></span>
+                        <% }; %>
+                        <% for (let i = Math.floor(sum.sum_val / prof_profile.rated_userID.length); i < 5; i++ ){ %>
+                            <span class="fade rating__star fas fa-star"></span>
+                        <% }; %>
                     </div>
+                    <br>
+                    <% }; %> 
                 </div>
                 <div class="reviews">
                     <!---------------------POPULAR REVIEWS------------------------>
                     <section class="popular-reviews">
                         <header class="section-heading">POPULAR REVIEWS</header>
                         <ul>
+                            <% if(dbreviews.length == 0){ %>
+                                <li>
+                                   <p class="no-review">There are no reviews for this prof yet.</p>
+                                </li>
+                                <% }; %> 
                             <% dbreviews.slice(0,5).forEach(function(review){ %>
                             <li class="review-content"> 
                                 <div class="review-container">
@@ -102,14 +128,16 @@
                                     </div>
                                     <div class="name">
                                         <span>Review by</span>
-                                        <p class="username">gpwtqibbia</p>
+                                        <p class="username"><%= review.username %></p>
                                     </div>
+                                    <% if(user.username == review.username){ %>
                                     <div class="del-btn">
                                         <form class="del-form" action="/deletePost" method="post">
                                             <input type="hidden" value="<%= review.id %>" name="reviewID">
                                             <button type="submit" class="fa-solid fa-trash" id="del-btn"></button>
                                         </form>
                                     </div>
+                                    <% }; %> 
                                     <div class="course-review">
                                         <span>course: </span>
                                         <p><%= review.course %></p>
@@ -138,6 +166,11 @@
                 <section class="recent-reviews">
                            <header class="section-heading">RECENT REVIEWS</header>
                         <ul>
+                            <% if(dbreviews.length == 0){ %>
+                                <li>
+                                   <p class="no-review">There are no reviews for this prof yet.</p>
+                                </li>
+                                <% }; %> 
                             <% reviews.slice(0,5).forEach(function(review){ %>
                             <li class="review-content"> 
                                 <div class="review-container">
@@ -146,14 +179,16 @@
                                     </div>
                                     <div class="name">
                                         <span>Review by</span>
-                                        <p class="username">viahle</p>
+                                        <p class="username"><%= review.username %></p>
                                     </div>
+                                    <% if(user.username == review.username){ %>
                                     <div class="del-btn">
                                         <form class="del-form" action="/deletePost" method="post">
                                             <input type="hidden" value="<%= review.id %>" name="reviewID">
                                             <button type="submit" class="fa-solid fa-trash" id="del-btn"></button>
                                         </form>
                                     </div>
+                                    <% }; %> 
                                     <div class="course-review">
                                         <span>course: </span>
                                         <p><%= review.course %></p>
