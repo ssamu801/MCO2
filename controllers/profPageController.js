@@ -1,5 +1,6 @@
 import Prof from "../models/profSchema.js";
 import Review from "../models/reviewSchema.js";
+import mongoose from 'mongoose';
 import authenticateUser from "../configs/authenticateUser.js";
 
 const profPage = {
@@ -7,6 +8,7 @@ const profPage = {
         const profID = req.params.profID;
         var dbreviews = [];
         var isRated = 1;
+        var sum = [];
 
         Review.find({prof_id: profID}, null, {sort: {likes: -1}}, function(err, rows){
             if(err){
@@ -15,6 +17,7 @@ const profPage = {
             else{
                 rows.forEach(function(reviews){
                     dbreviews.push({
+                        username: reviews.username,
                         id: reviews._id,
                         reviewContent: reviews.reviewContent,
                         course: reviews.course,
@@ -25,6 +28,20 @@ const profPage = {
             }
         
         });
+
+        Prof.aggregate( [{'$match': {'_id': mongoose.Types.ObjectId(profID)}}, {'$unwind': {'path': '$rated_userID'}}, {'$group': {'_id': '$_id', 'sum_val': {'$sum': '$rated_userID.rating'}}}], function(err,rows){
+            if(err){
+                console.log(err);
+            }
+            else{
+                rows.forEach(function(result){
+                    sum.push({
+                        id: result._id,
+                        sum_val: result.sum_val})
+                });
+            }
+        })
+
 
 
         Prof.find({_id: profID}, function(err, result){
@@ -52,7 +69,8 @@ const profPage = {
                                     reviews: rows,
                                     prof_profile: result[0],
                                     user_rating: rating[0].rated_userID[0],
-                                    isRated: isRated
+                                    isRated: isRated,
+                                    sum: sum[0]
                                 })
                                 
                             }  
@@ -98,6 +116,7 @@ const profPage = {
 
     saveReview: function(req, res){
         const review = new Review({
+            username: req.user.username,
             reviewContent: req.body.reviewContent,
             course: req.body.course,
             likes: 0,
@@ -124,7 +143,6 @@ const profPage = {
 
         console.log(profID);
 
-       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
         Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
             if(err){
                 console.log(err);
@@ -144,7 +162,6 @@ const profPage = {
 
         console.log(profID);
 
-       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
         Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
             if(err){
                 console.log(err);
@@ -164,7 +181,6 @@ const profPage = {
 
         console.log(profID);
 
-       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
         Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
             if(err){
                 console.log(err);
@@ -184,7 +200,6 @@ const profPage = {
 
         console.log(profID);
 
-       // User.findByIdAndUpdate(id, { $push: { createdEvents: eventId } })
         Prof.findByIdAndUpdate(query, { $push: { rated_userID: userRating} }, function(err, rows){
             if(err){
                 console.log(err);
