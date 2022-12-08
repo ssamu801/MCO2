@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const reviewsSchema = {
-    //username: String,
+    username: String,
     reviewContent: String,
     course: String,
     likes: 0,
